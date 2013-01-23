@@ -1,5 +1,2 @@
-require "service_config/version"
-
-module ServiceConfig
-  # Your code goes here...
-end
+require 'service_config/version'
+require 'service_config/provider'
