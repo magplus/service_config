@@ -1,5 +1,5 @@
 # ServiceConfig
-
+![Gem version](https://badge.fury.io/rb/service_config.png)
 Use this gem to expose environment variables to your code, with clear
 defaults and error handling for when the environment variables are
 unset.
