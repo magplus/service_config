@@ -26,6 +26,12 @@ And then execute:
 
     provider.internal_server # => 'http://localhost:3000/'
     provider.soundcloud_server # => 'http://api.soundcloud.com/'
+    
+Configure mandatory options individually
+
+    ServiceConfig::Provider.new(:raise_if_nil => false) do |config|
+      config.provides :some_key, 'default', :raise_if_nil => true
+    end
 
 ## Contributing
 
