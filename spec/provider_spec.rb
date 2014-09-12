@@ -12,7 +12,7 @@ describe ServiceConfig::Provider do
     service_config.foo.should == 'yo'
   end
 
-  it 'raises if an environment variable is not set, if configured' do
+  it 'raises if an environment variable is not set, if configured globally' do
     expect {
       build_service_config(:raise_if_nil => true) { |c| c.provides :unset }
     }.to raise_error('must set UNSET')
@@ -20,6 +20,16 @@ describe ServiceConfig::Provider do
     expect {
       build_service_config(:raise_if_nil => false) { |c| c.provides :unset }
     }.not_to raise_error
+  end
+
+  it 'raises if an environment variable is not set, if configured on specific variable' do
+    expect {
+      build_service_config(:raise_if_nil => false) { |c| c.provides :unset, nil, :raise_if_nil => true }
+    }.to raise_error('must set UNSET')
+
+    expect {
+      build_service_config(:raise_if_nil => true) { |c| c.provides :unset, nil, :raise_if_nil => false }
+    }.to_not raise_error
   end
 
   it 'defines the value as "" if the environment variable is unset' do
